@@ -2,7 +2,7 @@
 
 This is my solution to the [JIT Calculator Challenge](https://ochagavia.nl/blog/the-jit-calculator-challenge/).
 
-The challenge is to create a "JIT Compiler" for the language that the following program gives rise to:
+The challenge is to create a "JIT compiler" for the language that the following mini-interpreter gives rise to:
 ```rust
 fn main() {
     // A simple integer calculator:
@@ -45,9 +45,7 @@ This solution is not portable and only runs on `x86_64`. To support a different 
 
 ## Division
 
-The division instruction emitted is `sal $1, %eax`. This is naive since it does not mimic the exact behavior of integer division in Rust. This behaves like floor division, like `//` in Python. When dividing a negative odd integer by 2, shifting left will yield a value one less than integer dividing. In other words, `-(2k+1) >> 1 = -(2k+1)/2 - 1`.
-
-This can be "fixed" by using something like `idiv`.
+The division instruction emitted is `sal $1, %eax`. This is naive since it does not mimic the exact behavior of integer division in Rust. This behaves like floor division, like `//` in Python. When dividing a negative odd integer by 2, shifting left will yield a value one less than integer dividing. In other words, `-(2k+1) >> 1 = -(2k+1)/2 - 1` where `k` is a positive integer. This can be "fixed" by using something like `idiv`.
 
 ## References
 
