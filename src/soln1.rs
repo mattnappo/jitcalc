@@ -44,8 +44,8 @@ fn assemble(asm: &str) -> Result<Vec<u8>, JitError> {
         return Err(JitError::AsmFailure(status.code().unwrap()));
     }
 
-    // Use objcopy to extract the raw binary of the assembly
-    // Write the output to TMP_BINFILE
+    // Use objcopy to extract the raw binary of the assembly and write the
+    // output to TMP_BINFILE
     let status = Command::new("objcopy")
         .arg("-O")
         .arg("binary")
